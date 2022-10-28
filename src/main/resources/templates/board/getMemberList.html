@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	
+</head>
+<body th:align="center">
+	<div align="center">
+	<h3>회원 목록보기 (<a th:href="@{/index.html}">Home</a>)</h3>
+	<a th:href="@{/system/logout.do}">LOG_OUT</a>&nbsp;&nbsp;&nbsp;
+	<a th:href="@{/admin/adminPage.do}">게시판 관리</a>
+	<hr>
+	<table border=1 width=500>
+		<tr>
+			<th>아이디</th><th>비밀번호</th><th>이름</th><th>역할</th><th>enabled</th>
+		</tr>
+		<tr align="center" th:each="m : ${li}">
+			<td><a th:href="@{/board/deleteMember.do(id=${m.id})}" th:text="${m.id}"></a></td>
+			<td th:text="${m.password}" />
+			<td th:text="${m.name}" />
+			<td th:text="${m.role}" />
+			<td th:text="${m.enabled}" />
+		</tr>
+	</table>
+	<br>
+	<a th:href="@{/board/formMember.do}">회원 등록</a>
+	</div>
+	<hr>
+</body>
+</html>

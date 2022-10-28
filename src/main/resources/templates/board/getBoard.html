@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	
+</head>
+<body th:align="center">
+	<div align="center">
+	<h3>게시판 글 수정 (<a th:href="@{/index.html}">Home</a>)</h3>
+	<form action="/board/updateBoard.do">
+	<input type="hidden" name="seq" th:value="${vo.seq}">
+	<table border=1>
+		<tr><td align="center">제목</td><td><input type="text" name="title" th:value="${vo.title}"></td></tr>
+		<tr><td align="center">작성자</td><td>[[${vo.name}]]</td></tr>
+		<tr><td align="center">내용</td><td><textarea name="content" rows="5" cols="40">[[${vo.content}]]</textarea></td></tr>
+		<tr><td align="center">등록일</td><td>[[${#dates.format(vo.regDate, 'yyyy-MM-dd')}]]</td></tr>
+		<tr><td align="center">조회수</td><td>[[${vo.cnt}]]</td></tr>
+		<tr><td align="center" colspan="2"><input type="submit" value="글 수정"></td></tr>
+	</table>
+	</form>
+	<br>
+	<a th:href="@{/board/getBoardList.do}">목록보기</a>&emsp;
+	<a th:href="@{/board/formBoard.do}">글 등록</a>&emsp;
+	<a th:href="@{/board/deleteBoard.do(seq=${vo.seq})}">글 삭제</a>
+	</div>
+</body>
+</html>

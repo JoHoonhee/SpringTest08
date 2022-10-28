@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rubypaper.board.persistence.JoinDao">
+	
+	<select id="getJoinList" parameterType="com.rubypaper.board.domain.JoinVO" resultType="com.rubypaper.board.domain.JoinVO">
+		<![CDATA[
+			SELECT seq, title, writer, content, regDate, id, password, name, role, cnt, enabled
+			FROM board1026 b INNER JOIN member1026 m
+			ON b.writer = m.id
+			WHERE 1 = 1
+		]]>
+			<if test="searchCondition == 'title'">
+				AND title LIKE '%'||#{searchKeyword}||'%'
+			</if>
+			<if test="searchCondition == 'name'">
+				AND name LIKE '%'||#{searchKeyword}||'%'
+			</if>
+			ORDER BY seq DESC
+	</select>
+	
+	<select id="getJoinId" parameterType="com.rubypaper.board.domain.JoinVO" resultType="com.rubypaper.board.domain.JoinVO">
+		<![CDATA[
+			SELECT seq, title, writer, content, regDate, id, password, name, role, cnt, enabled
+			FROM board1026 b INNER JOIN member1026 m
+			ON b.writer = m.id
+			WHERE id = #{id}
+		]]>
+	</select>
+	
+	<select id="getJoinSeq" parameterType="com.rubypaper.board.domain.JoinVO" resultType="com.rubypaper.board.domain.JoinVO">
+		<![CDATA[
+			SELECT seq, title, writer, content, regDate, id, password, name, role, cnt, enabled
+			FROM board1026 b INNER JOIN member1026 m
+			ON b.writer = m.id
+			WHERE seq = #{seq}
+		]]>
+	</select>
+
+</mapper>
